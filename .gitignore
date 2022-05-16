@@ -33,3 +33,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# codegen for graphql-typescript-apollo
+libs/graphql/__generated__.ts
