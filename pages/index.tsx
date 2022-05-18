@@ -16,6 +16,11 @@ export const getStaticProps: GetStaticProps = async () => {
   try {
     const response = await client.query({
       query: LaunchesDocument,
+      variables: {
+        limit: 10,
+        sort: 'launch_year',
+        order: 'desc',
+      },
     })
 
     return {

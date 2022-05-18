@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { LaunchesQuery } from '../../libs/graphql/__generated__'
 import type { ApolloQueryResult } from '@apollo/client'
 
@@ -8,7 +9,10 @@ export interface LaunchesPropTypes {
 
 const Launches: React.FC<LaunchesPropTypes> = ({ response, error }) => {
   console.log(response)
+  const [index, setIndex] = useState(response?.data?.launches?.length || 0);
   return <div className='px-12'>
+      <p>This list has {index} items</p>
+      <button onClick={() => setIndex(state => state + 1)} type="button">Add one item</button>
       <ul>
         {response?.data?.launches?.map(launch => (
           <li key={launch?.id}>
