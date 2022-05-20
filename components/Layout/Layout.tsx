@@ -6,10 +6,14 @@ interface props {
 
 const Layout: React.FC<props> = ({ children }) => {
   return (
-    <>
+    <div className="font-mono">
       <Header />
-      { children }
-    </>
+      <main className='py-6'>
+        <div className='xl:container mx-auto px-8 lg:px-16'>
+          { children }
+        </div>
+      </main>
+    </div>
   )
 }
 

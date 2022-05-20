@@ -1,9 +1,6 @@
 query Launches ($limit: Int!, $sort: String!, $order: String!) {
   launches(limit: $limit, sort: $sort, order: $order) {
     links {
-      flickr_images
-      video_link
-      wikipedia
       mission_patch_small
     }
     id
@@ -11,14 +8,6 @@ query Launches ($limit: Int!, $sort: String!, $order: String!) {
     rocket {
       rocket_name
     }
-    launch_year
     launch_date_local
-    launch_site {
-      site_name
-    }
-    details
-    telemetry {
-      flight_club
-    }
   }
 }
