@@ -8,9 +8,10 @@ export interface LaunchesPropTypes {
 }
 
 const Launches: React.FC<LaunchesPropTypes> = ({ response, error }) => {
-  console.log(response)
   const [index, setIndex] = useState(response?.data?.launches?.length || 0);
-  return <div className='px-12'>
+  return error.exist
+    ? <p>{ error.message }</p>
+    : ( <div className='px-12'>
       <p>This list has {index} items</p>
       <button onClick={() => setIndex(state => state + 1)} type="button">Add one item</button>
       <ul>
@@ -21,8 +22,7 @@ const Launches: React.FC<LaunchesPropTypes> = ({ response, error }) => {
           </li>
         ))}
       </ul>
-    </div>
-
+    </div> )
 }
 
 export default Launches
