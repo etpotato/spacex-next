@@ -20,7 +20,6 @@ const ROUTES = [
 
 const Header:React.FC = () => {
   const router = useRouter();
-  console.log(router);
   return (
     <header className='py-4 bg-amber-700 text-white'>
       <div className='xl:container mx-auto px-8 lg:px-16'>
