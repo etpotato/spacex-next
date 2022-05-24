@@ -7,7 +7,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Rocket from '../components/Icons/Rocket'
 import Clock from '../components/Icons/Clock'
-import Carousel from '../components/Carousel/Carousel';
+import Carousel from '../components/Carousel/Carousel'
+import Section from '../components/Section/Section'
 interface props {
   response: ApolloQueryResult<LaunchesQuery>,
   error: { message: String, exist: Boolean },
@@ -38,17 +39,13 @@ const Main: NextPage<props> = ({ response, error }) => {
           </a>
         </Link>
       ),
-    });
-  });
+    })
+  })
 
   return (
-    <>
-      <h1 className='font-bold mb-6'>launches</h1>
-      { error.exist
-        ? <p>{ error.message }</p>
-        : <Carousel list={list}/>
-      }
-    </>
+    <Section title='launches' error={error}>
+      <Carousel list={list} />
+    </Section>
   )
 }
 
