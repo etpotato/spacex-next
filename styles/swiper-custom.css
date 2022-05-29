@@ -1,7 +1,7 @@
 .swiper.swiper-custom {
   margin: 0 -2.5rem;
   padding: 0.5rem 2.5rem;
-  
+
   &::before,
   &::after {
     content: '';
@@ -12,50 +12,73 @@
     background-color: #fff;
     z-index: 2;
   }
-  
+
   &::before {
     left: -2px;
   }
-  
+
   &::after {
     right: -2px;
   }
-  
-  
+
+  @media (min-width: 768px) {
+    margin: 0 -2.5rem;
+    padding: 0.5rem 2.5rem;
+
+    &::before,
+    &::after {
+      width: 2.5rem;
+    }
+  }
+
+
   @media (min-width: 1024px) {
     margin: 0 -3rem;
-    padding: 0.5rem 3rem;  
-    
+    padding: 0.5rem 3rem;
+
     &::before,
     &::after {
       width: 3rem;
     }
   }
-  
+
   @media (min-width: 1280px) {
     margin: 0 -4rem;
-    padding: 0.5rem 4rem;  
-    
+    padding: 0.5rem 4rem;
+
     &::before,
     &::after {
       width: 4rem;
     }
-    
+
   }
-  
+
   .swiper-wrapper {
     display: grid;
     grid-auto-flow: column;
     width: min-content;
   }
-  
+
   .swiper-button-prev,
   .swiper-button-next {
     color: rgb(0 0 0 / 1);
     user-select: none;
-    
+
     &:hover {
       color: rgb(34 211 238 / 1);
     }
+  }
+
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 2rem;
+  }
+
+  .swiper-button-prev {
+    left: 0.5rem;
+  }
+
+  .swiper-button-next {
+    right: 0.5rem;
   }
 }

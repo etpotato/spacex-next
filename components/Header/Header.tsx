@@ -37,7 +37,7 @@ const Header:React.FC = () => {
                   </Link>
               )
           }
-          <ul className='sm:flex flex-wrap'>
+          <ul className='flex flex-wrap'>
             { ROUTES.map((route) => {
               const matches = route.path === router.route;
               return (

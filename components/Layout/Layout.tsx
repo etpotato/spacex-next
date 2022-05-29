@@ -9,7 +9,7 @@ const Layout: React.FC<props> = ({ children }) => {
     <div className="font-mono">
       <Header />
       <main className='py-6'>
-        <div className='xl:container mx-auto px-8 lg:px-16'>
+        <div className='xl:container mx-auto px-8 md:px-12 lg:px-16'>
           { children }
         </div>
       </main>

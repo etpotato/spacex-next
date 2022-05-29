@@ -1,4 +1,4 @@
-query Launches ($limit: Int, $sort: String! = "launch_date_utc", $offset: Int, $order: String! = "desc") {
+query Launches ($limit: Int, $sort: String = "launch_date_utc", $offset: Int, $order: String = "desc") {
   launches(limit: $limit, sort: $sort, offset: $offset, order: $order) {
     links {
       mission_patch_small

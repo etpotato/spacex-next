@@ -1,38 +1,57 @@
-import { Navigation } from 'swiper'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Swiper, Navigation } from 'swiper'
+import { Swiper as SwiperComponent, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 import 'swiper/css/navigation'
 
+type AddItems = () => void
+
+export type CarouselList = Array<{ key?: string | null, element: JSX.Element }> | undefined
+
 interface props {
-  list?: Array<{
-    key?: string | null,
-    element: JSX.Element,
-  }>,
+  list?: CarouselList,
+  addItems?: AddItems,
 }
 
-const Carousel: React.FC<props> = ({ list }) => {
+const SLIDES_BUFFER = 5
+const BREAKPOINTS = {
+  '100': { slidesPerView: 1 },
+  '640': { slidesPerView: 2 },
+  '1280': { slidesPerView: 3 },
+} as const
+
+type Breakpoints = keyof typeof BREAKPOINTS
+
+const onActiveIndexChange = (addItems?: AddItems) => (swiper: Swiper): void => {
+  if (!addItems) return;
+
+  const currentBreakpoint: Breakpoints = swiper.currentBreakpoint
+
+  const slidesPerView = BREAKPOINTS[currentBreakpoint]?.slidesPerView
+  const leftToShow = swiper.slides.length - slidesPerView - swiper.activeIndex
+
+  if (leftToShow <= SLIDES_BUFFER) addItems()
+};
+
+const Carousel: React.FC<props> = ({ list, addItems }) => {
   return (
-    <Swiper
+    <SwiperComponent
       className='swiper-custom'
+      breakpoints={BREAKPOINTS}
       modules={[Navigation]}
       navigation
+      onSlideNextTransitionEnd={onActiveIndexChange(addItems)}
       spaceBetween={32}
-      breakpoints={{
-        '640': { slidesPerView: 2 },
-        '1280': { slidesPerView: 3 },
-      }}
       slidesPerView={1}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
       wrapperTag='ul'
     >
-      { list?.map((item) => (
-        <SwiperSlide key={item.key} tag='li'>
-          { item?.element }
-        </SwiperSlide>
-      ))}
-    </Swiper>
+      { list?.map((item) => {
+        return (
+          <SwiperSlide key={item.key} tag='li'>
+            { item.element }
+          </SwiperSlide>
+        )})}
+    </SwiperComponent>
   )
 };
 
