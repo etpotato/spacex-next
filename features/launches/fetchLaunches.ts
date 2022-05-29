@@ -3,7 +3,7 @@ import client from '../../libs/apollo-client'
 
 import { LaunchesDocument, useLaunchesLazyQuery } from '../../libs/graphql/__generated__'
 import getUniqueLaunches from './getUniqueLaunches'
-import type { Launch, LaunchesData, LaunchesStaticProps } from './types'
+import type { LaunchCard, LaunchesData, LaunchesStaticProps } from './types'
 
 const ITEMS_LIMIT = 6;
 
@@ -31,7 +31,7 @@ export const getStaticLaunches = async (): Promise<LaunchesStaticProps> => {
   }
 }
 
-export const useFetchLaunches = (staticLaunches: Launch) => {
+export const useFetchLaunches = (staticLaunches: LaunchCard) => {
   const [fetchLaunches] = useLaunchesLazyQuery({ onCompleted })
   const [launches, setLaunches] = useState(staticLaunches)
   const [offset, setOffset] = useState(ITEMS_LIMIT)

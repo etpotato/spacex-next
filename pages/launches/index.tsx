@@ -17,8 +17,7 @@ const Main: NextPage<LaunchesStatic> = ({ staticLaunches, error }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const result = await getStaticLaunches()
-  return result
+  return await getStaticLaunches()
 }
 
 export default Main

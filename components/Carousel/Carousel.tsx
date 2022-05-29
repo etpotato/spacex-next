@@ -15,7 +15,6 @@ interface props {
 
 const SLIDES_BUFFER = 5
 const BREAKPOINTS = {
-  '100': { slidesPerView: 1 },
   '640': { slidesPerView: 2 },
   '1280': { slidesPerView: 3 },
 } as const

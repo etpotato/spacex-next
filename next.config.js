@@ -11,8 +11,13 @@ const nextConfig = {
   },
   reactStrictMode: true,
   images: {
-    domains: ['i.imgur.com', 'images2.imgbox.com']
-  }
+    domains: ['i.imgur.com', 'images2.imgbox.com', 'live.staticflickr.com', 'farm5.staticflickr.com']
+  },
+  experimental: {
+    images: {
+      layoutRaw: true,
+    },
+  },
 }
 
 module.exports = nextConfig

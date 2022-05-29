@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         'card': '1.5rem 1fr auto',
+        'info-item': 'auto 1fr',
       },
       gridTemplateRows: {
         'card-text': '1fr auto auto',

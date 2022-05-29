@@ -9,7 +9,7 @@ const Header:React.FC = () => {
   const router = useRouter();
   return (
     <header className='py-4 bg-amber-700 text-white'>
-      <div className='xl:container mx-auto px-8 lg:px-16'>
+      <div className='xl:container mx-auto px-8 md:px-12 lg:px-16'>
         <nav className='flex flex-wrap items-end'>
           {
             router.route === `/${ROUTES[0]}`

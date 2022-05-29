@@ -1,0 +1,24 @@
+query Launch ($id: ID!) {
+  launch(id: $id) {
+    details
+    launch_date_utc
+    launch_site {
+      site_name_long
+    }
+    launch_success
+    links {
+      article_link
+      flickr_images
+      mission_patch_small
+      video_link
+      wikipedia
+    }
+    mission_name
+    rocket {
+      rocket {
+        wikipedia
+      }
+      rocket_name
+    }
+  }
+}

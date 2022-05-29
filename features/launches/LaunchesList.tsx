@@ -4,10 +4,10 @@ import Rocket from '../../components/Icons/Rocket'
 import Clock from '../../components/Icons/Clock'
 import getUniqueLaunches from './getUniqueLaunches'
 import type { CarouselList } from '../../components/Carousel/Carousel'
-import type { Launch } from './types'
+import type { LaunchCard } from './types'
 
-const LaunchesList = (launches: Launch): CarouselList => {
-  const uniqueLaunches = getUniqueLaunches(launches)
+const LaunchesList = (launches: LaunchCard): CarouselList => {
+  const uniqueLaunches:LaunchCard  = getUniqueLaunches(launches)
 
   return uniqueLaunches?.map(launch => {
     const date = launch?.launch_date_utc
