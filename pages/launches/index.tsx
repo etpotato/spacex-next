@@ -1,10 +1,10 @@
 import type { NextPage, GetStaticProps } from 'next'
 
-import { getStaticLaunches, useFetchLaunches } from '../features/launches/fetchLaunches'
-import LaunchesList from '../features/launches/LaunchesList'
-import Carousel from '../components/Carousel/Carousel'
-import Section from '../components/Section/Section'
-import type { LaunchesStatic } from '../features/launches/types'
+import { getStaticLaunches, useFetchLaunches } from '../../features/launches/fetchLaunches'
+import LaunchesList from '../../features/launches/LaunchesList'
+import Carousel from '../../components/Carousel/Carousel'
+import Section from '../../components/Section/Section'
+import type { LaunchesStatic } from '../../features/launches/types'
 
 const Main: NextPage<LaunchesStatic> = ({ staticLaunches, error }) => {
   const { launches, addLaunches } = useFetchLaunches(staticLaunches);
