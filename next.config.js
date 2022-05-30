@@ -11,7 +11,7 @@ const nextConfig = {
   },
   reactStrictMode: true,
   images: {
-    domains: ['i.imgur.com', 'images2.imgbox.com', 'live.staticflickr.com', 'farm5.staticflickr.com']
+    domains: ['imgur.com', 'i.imgur.com', 'images2.imgbox.com', 'live.staticflickr.com', 'farm5.staticflickr.com']
   },
   experimental: {
     images: {

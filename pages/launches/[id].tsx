@@ -8,6 +8,7 @@ import Clock from '../../components/Icons/Clock'
 import Rocket from '../../components/Icons/Rocket'
 import Success from '../../components/Icons/Success'
 import fetchLaunch from '../../features/launches/fetchLaunch'
+import { getYouTubeVideoIdFromUrl } from '../../libs/helpers/youtube'
 import type { LaunchServerSide } from '../../features/launches/types'
 
 const LaunchPage: NextPage<LaunchServerSide> = ({ launch }) => {
@@ -34,8 +35,9 @@ const LaunchPage: NextPage<LaunchServerSide> = ({ launch }) => {
   const date = launch?.launch_date_utc
     && new Date(launch?.launch_date_utc).toUTCString()
   const rocket = launch?.rocket?.rocket_name
-  const patchSrc = launch?.links?.mission_patch_small;
+  const patchSrc = launch?.links?.mission_patch_small
   const isSuccessful = launch?.launch_success
+  const video = getYouTubeVideoIdFromUrl(launch?.links?.video_link ? launch.links.video_link : '')
 
   return (
     <Section title={launch?.mission_name || ''}>
@@ -75,20 +77,50 @@ const LaunchPage: NextPage<LaunchServerSide> = ({ launch }) => {
             <span>{isSuccessful ? 'Success' : 'Fail'}</span>
           </li>
         </ul>
-        <p className='max-w-prose'>
+        <p className='max-w-prose mb-12'>
           { patchSrc
-            ? <div className='float-left mx-4 mt-2 mb-1'>
+            ? <span className='block float-left mx-4 mt-2 mb-1'>
                 <Image className='block'
                   src={patchSrc}
                   width='80'
                   height='80'
                   layout='fixed'
                   alt='Mission patch'/>
-              </div>
+              </span>
             : null
           }
           { launch?.details }
         </p>
+        { video
+          ? <div>
+              <iframe className='w-full h-auto aspect-video' width='560' height='315' src={`https://www.youtube.com/embed/${video}`} title='YouTube video player' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'></iframe>
+            </div>
+          : null
+        }
+        { launch?.links?.article_link || launch?.links?.wikipedia
+          ? <div className='flex flex-col h-full items-end justify-end'>
+              <h2 className='mb-5'>Links:</h2>
+              { launch?.links?.article_link
+                ? <a className='block max-w-max mb-4 text-sm underline underline-offset-2 hover:-translate-y-1 focus:-translate-y-1 hover:text-cyan-400 focus:text-cyan-400'
+                    href={launch.links.article_link}
+                    target='_blank'
+                    rel='noreferrer'>
+                    Article
+                  </a>
+                : null
+              }
+              { launch?.links?.wikipedia
+                ? <a className='block max-w-max mb-4 text-sm underline underline-offset-2 hover:-translate-y-1 focus:-translate-y-1 hover:text-cyan-400 focus:text-cyan-400'
+                href={launch.links.wikipedia}
+                target='_blank'
+                rel='noreferrer'>
+                    Wikipedia
+                  </a>
+                : null
+              }
+            </div>
+        : null
+        }
       </div>
     </Section>
   )
