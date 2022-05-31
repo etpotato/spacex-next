@@ -1,8 +1,10 @@
 import type { NextPage, GetServerSideProps } from 'next'
 import Image from 'next/image'
+import { MouseEventHandler, useState } from 'react'
 
 import Section from '../../components/Section/Section'
 import Carousel, { type CarouselList } from '../../components/Carousel/Carousel'
+import Modal from '../../components/Modal/Modal'
 import Pin from '../../components/Icons/Pin'
 import Clock from '../../components/Icons/Clock'
 import Rocket from '../../components/Icons/Rocket'
@@ -12,11 +14,23 @@ import { getYouTubeVideoIdFromUrl } from '../../libs/helpers/youtube'
 import type { LaunchServerSide } from '../../features/launches/types'
 
 const LaunchPage: NextPage<LaunchServerSide> = ({ launch }) => {
+  const [modalOpen, setModalOpen] = useState(false)
+  const [activeImage, setActiveImage] = useState<string | null>(null)
+
+  const handleImageClick = (src: typeof activeImage): MouseEventHandler => (evt) => {
+    evt.preventDefault();
+    setActiveImage(src);
+    setModalOpen(true);
+  }
+
   const images = launch?.links?.flickr_images?.reduce<CarouselList>((accum, link) => {
     if (link) accum?.push({
       key: link,
       element: (
-        <div className='relative h-full flex items-center'>
+        <a
+          className='relative h-full flex items-center'
+          href={link}
+          onClick={handleImageClick(link)}>
           <Image className='block w-full max-h-80 object-contain'
             src={link}
             priority
@@ -26,7 +40,7 @@ const LaunchPage: NextPage<LaunchServerSide> = ({ launch }) => {
             placeholder='blur'
             blurDataURL='data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
             alt='Launch photo'/>
-        </div>
+        </a>
       )
     })
     return accum
@@ -122,6 +136,19 @@ const LaunchPage: NextPage<LaunchServerSide> = ({ launch }) => {
         : null
         }
       </div>
+      <Modal open={modalOpen} setOpen={setModalOpen}>
+        { activeImage
+          && <Image
+              className='block w-auto max-h-full'
+              src={activeImage}
+              layout='raw'
+              width='600'
+              height='600'
+              placeholder='blur'
+              blurDataURL='data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
+              alt='launch photo'/>
+        }
+      </Modal>
     </Section>
   )
 }
