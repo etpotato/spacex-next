@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router'
 import logo from '../../public/img/logo.svg'
 
-const ROUTES = ['launches', 'rockets', 'landpads']
+const ROUTES = ['launches', 'rockets']
 
 const Header:React.FC = () => {
   const router = useRouter();
