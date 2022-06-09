@@ -1,0 +1,30 @@
+query Rocket ($id: ID!) {
+  rocket(id: $id) {
+    cost_per_launch
+    description
+    diameter {
+      meters
+    }
+    engines {
+      type
+      version
+    }
+    first_flight
+    height {
+      meters
+    }
+    id
+    mass {
+      kg
+    }
+    name
+    payload_weights {
+      kg
+      id
+      name
+    }
+    stages
+    type
+    wikipedia
+  }
+}

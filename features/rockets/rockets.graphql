@@ -1,0 +1,10 @@
+query Rockets {
+  rockets {
+    first_flight
+    id
+    name
+    mass {
+      kg
+    }
+  }
+}
