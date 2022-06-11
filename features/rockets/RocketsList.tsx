@@ -10,7 +10,7 @@ const RocketsList = (rockets: RocketCard): CarouselList => {
     const firstFlight = rocket?.first_flight ? new Date(rocket?.first_flight).toDateString() : null
 
     const item = (
-      <Link href={`/launches/${rocket?.id}`} passHref>
+      <Link href={`/rockets/${rocket?.id}`} passHref>
         <a className='grid grid-cols-card gap-4 h-full p-6 border-2 border-black hover:border-cyan-400 focus:border-cyan-400 hover:-translate-y-1 focus:-translate-y-1 hover:underline focus:underline outline-none underline-offset-2'>
           <h3 className='text-lg mb-4 col-span-2 self-start'>{rocket?.name}</h3>
           <p className='contents'>

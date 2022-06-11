@@ -139,7 +139,7 @@ const LaunchPage: NextPage<LaunchServerSide> = ({ launch }) => {
       <Modal open={modalOpen} setOpen={setModalOpen}>
         { activeImage
           && <Image
-              className='block w-auto max-h-full'
+              className='block w-auto h-screen object-contain'
               src={activeImage}
               layout='raw'
               width='600'
