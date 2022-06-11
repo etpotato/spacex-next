@@ -43,7 +43,7 @@ export const useFetchLaunches = (staticLaunches: LaunchCard) => {
     if (haveLaunches || haveNewLaunches) {
       const newLaunches = getUniqueLaunches([
         ...(haveLaunches ? launches : []),
-        ...(haveNewLaunches ? data.launches : [])
+        ...(Array.isArray(data?.launches) ? data.launches : [])
       ])
 
       setOffset(state => state + ITEMS_LIMIT)

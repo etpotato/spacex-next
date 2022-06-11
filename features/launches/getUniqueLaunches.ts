@@ -1,6 +1,6 @@
-import type { Launch } from './types'
+import type { LaunchCard } from './types'
 
-const getUniqueLaunches = (launches?: Launch): Launch | [] => {
+const getUniqueLaunches = (launches?: LaunchCard): LaunchCard | [] => {
   if (!launches?.length) return []
 
   const set: Set<String> = new Set()
