@@ -1,4 +1,5 @@
 import type { NextPage, GetStaticProps, GetStaticPaths } from 'next'
+import Head from 'next/head'
 import Image from 'next/image'
 import { MouseEventHandler, useState } from 'react'
 
@@ -17,11 +18,16 @@ const RocketPage: NextPage<RocketStatic> = ({ staticRocket }) => {
     setModalOpen(true);
   }
 
+  const title = staticRocket?.name || ''
   const link = `/img/rockets/${staticRocket?.id}.jpg`;
   const date = staticRocket?.first_flight && new Date(staticRocket?.first_flight).toUTCString()
 
   return (
-    <Section title={staticRocket?.name || ''}>
+    <Section title={title}>
+      <Head>
+        <title>SpaceX rocket: {title}</title>
+        <meta property="og:title" content={`SpaceX rocket: ${title}`}/>
+      </Head>
       <div className='md:grid grid-cols-2 items-start gap-8'>
         <a
           className='relative h-full block mb-8 md:mb-0'

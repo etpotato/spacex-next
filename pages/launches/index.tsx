@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import type { NextPage, GetStaticProps } from 'next'
 
 import { getStaticLaunches, useFetchLaunches } from '../../features/launches/fetchLaunches'
@@ -11,6 +12,10 @@ const Main: NextPage<LaunchesStatic> = ({ staticLaunches, error }) => {
 
   return (
     <Section title='launches' error={error}>
+      <Head>
+        <title>SpaceX launches</title>
+        <meta property="og:title" content="SpaceX launches"/>
+      </Head>
       <Carousel list={LaunchesList(launches)} addItems={addLaunches}/>
     </Section>
   )

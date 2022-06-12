@@ -1,5 +1,6 @@
 import type { NextPage, GetServerSideProps } from 'next'
 import Image from 'next/image'
+import Head from 'next/head'
 import { MouseEventHandler, useState } from 'react'
 
 import Section from '../../components/Section/Section'
@@ -45,6 +46,7 @@ const LaunchPage: NextPage<LaunchServerSide> = ({ launch }) => {
     })
     return accum
   }, [])
+  const title = launch?.mission_name || ''
   const location = launch?.launch_site?.site_name_long
   const date = launch?.launch_date_utc
     && new Date(launch?.launch_date_utc).toUTCString()
@@ -54,7 +56,11 @@ const LaunchPage: NextPage<LaunchServerSide> = ({ launch }) => {
   const video = getYouTubeVideoIdFromUrl(launch?.links?.video_link ? launch.links.video_link : '')
 
   return (
-    <Section title={launch?.mission_name || ''}>
+    <Section title={title}>
+      <Head>
+        <title>SpaceX launch: {title}</title>
+        <meta property="og:title" content={`SpaceX launch: ${title}`}/>
+      </Head>
       <div className='mb-12'>
         <Carousel list={images}/>
       </div>
