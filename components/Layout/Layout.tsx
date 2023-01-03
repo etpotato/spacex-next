@@ -21,7 +21,7 @@ const Layout: React.FC<props> = ({ children }) => {
             rel='noreferrer'>
             etpotato.com
           </a>
-          <p className='text-center sm:col-start-2 sm:row-start-1'>&copy;2022</p>
+          <p className='text-center sm:col-start-2 sm:row-start-1'>&copy;2023</p>
         </div>
       </footer>
     </div>
